@@ -38,7 +38,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-// app.use("/campgrounds",campgroundRoutes);
+app.use("/campgrounds",campgroundRoutes);
 app.use("/",indexRoutes);
 // app.use("/campgrounds/:id/comments",commentRoutes);
 
