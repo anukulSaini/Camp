@@ -15,13 +15,13 @@ router.get("/",function(req,res){
 	});
 });
 
-router.get("/new",function(req,res){
+router.get("/new",isLoggedIn,function(req,res){
     res.render("new");
 });
-router.post("/",function(req,res){
+router.post("/",isLoggedIn,function(req,res){
 	
 	
-  // add author to campground
+  //add author to campground
   // req.body.campground.author = {
   //   id: req.user._id,
   //   username: req.user.username
@@ -31,11 +31,11 @@ router.post("/",function(req,res){
       // req.flash('error', err.message);
       return res.redirect('back');
     }
-    res.redirect('/campgrounds' );
+    res.redirect('/campgrounds/' + campground.id);
   });
 });
 router.get("/:id",function(req,res){
-	Campground.findById(req.params.id).exec(function(err,newcc){
+	Campground.findById(req.params.id).populate("author").exec(function(err,newcc){
 		if(err){
 			console.log(err);
 		      }

@@ -24,6 +24,16 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 
+app.use(require("express-session")({
+	secret:"anukul saini",
+	// this secret is to decode 
+	resave:false,
+	saveUninitialized:false
+}));
+
+app.locals.moment = require('moment');
+
+
 //PASSPORT CONFIGURATION
 
 
