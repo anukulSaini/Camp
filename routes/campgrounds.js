@@ -1,3 +1,4 @@
+
 var express  = require("express"),
 router       = express.Router(),
 Campground   = require("../models/campground")
@@ -13,6 +14,10 @@ router.get("/",function(req,res){
           }
 	});
 });
+
+router.get("/new",function(req,res){
+    res.render("new");
+});
 router.post("/",function(req,res){
 	
 	
@@ -26,11 +31,8 @@ router.post("/",function(req,res){
       // req.flash('error', err.message);
       return res.redirect('back');
     }
-    res.redirect('/campgrounds/' );
+    res.redirect('/campgrounds' );
   });
-});
-router.get("/new",function(req,res){
-    res.render("new");
 });
 router.get("/:id",function(req,res){
 	Campground.findById(req.params.id).exec(function(err,newcc){
@@ -106,3 +108,5 @@ function checkOwnerShip(req,res,next){
 }
 
 module.exports = router;
+
+
