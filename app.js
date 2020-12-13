@@ -50,7 +50,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/campgrounds",campgroundRoutes);
 app.use("/",indexRoutes);
-// app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/campgrounds/:id/comments",commentRoutes);
 
 app.use(function(req,res,next){
 	res.locals.currentUser=req.user;
