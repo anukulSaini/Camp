@@ -25,16 +25,17 @@
 										<%=camp.description%>	
 									</p>
 									<p>
-  <!-- <em>Submitted by: campauthorusername , moment(camp.createdAt).fromNow() %></em> -->
+  
+										  <em>Submitted by: <%= camp.author.username %>, <%= moment(camp.createdAt).fromNow() %></em>
 </p>
-		<!-- <if(currentUser && camp.author.id.equals(currentUser._id)){%> -->
+		<%if(currentUser && camp.author.id.equals(currentUser._id)){%>
 									<a class="btn btn-warning" href="/campgrounds/<%=camp._id%>/edit">Edit</a>
 									<form class="del-form" action="/campgrounds/<%=camp._id%>?_method=DELETE" method="POST">
 										<button class="btn btn-danger">
 											Delete
 										</button>
 									</form>
-									<!-- %}%> -->
+									<%}%>
 								</div>
 								<div class="well">
 									<div class="text-right">
