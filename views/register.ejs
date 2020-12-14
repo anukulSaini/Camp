@@ -1,16 +1,25 @@
 <%- include("partials/header")%>
-<p>
-	<strong>SIGN UP FORM</strong>
-</p>
-<form action="/register" method="POST">
-	<input name="username" type="text" placeholder="username">
-	<input name="password" type="password" placeholder="password">
-	<button>
-		Submit
-	</button>
-</form>
 
-<li><a href="/register">Register</a></li>
-<li><a href="/login">Login</a></li>
-<li><a href="/logout">Logout</a></li>
+<div class="container">
+	
+	<div class="row">
+	 <h1 style="text-align:center">Register
+		</h1>
+<div style="width:30%;margin:20px auto">
+<form action="/register" method="POST">
+	<div class="form-group">
+	<input class="form-control"  name="username" type="text" placeholder="username">
+	<input class="form-control"  name="password" type="password" placeholder="password">
+	</div>
+	<div class="form-group">
+		<button class="btn btn-lg btn-primary btn-block">
+		Sign Up
+	</button>
+	</div>
+</form>
+</div>	
+	</div>
+
+</div>
+
 <%- include("partials/footer")%>
