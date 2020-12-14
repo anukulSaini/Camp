@@ -35,7 +35,7 @@ router.post("/",isLoggedIn,function(req,res){
   });
 });
 router.get("/:id",function(req,res){
-	Campground.findById(req.params.id).populate("author").exec(function(err,newcc){
+	Campground.findById(req.params.id).populate("comments").exec(function(err,newcc){
 		if(err){
 			console.log(err);
 		      }
