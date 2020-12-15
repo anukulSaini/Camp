@@ -16,7 +16,7 @@ router.get("/new",isLoggedIn,function(req,res){
 router.post("/",isLoggedIn,function(req,res){
 		Campground.findById(req.params.id,function(err,campground){
 			if(err){
-				res.redirect("/campgrounds")
+				res.redirect("/")
 			}
 			else{
 			Comment.create(req.body.comment,function(err,comment){
@@ -71,6 +71,7 @@ router.delete("/:comment_id",checkCommentOwnerShip,function(req,res){
 	});
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){
+		
 		return next();
 	}
 	// req.flash("error","please log in first!!")

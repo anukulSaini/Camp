@@ -2,6 +2,7 @@
 	 methodOverride       =require("method-override"),
      mongoose              = require("mongoose"),
 	 bodyParser            = require("body-parser"),
+	 flash                 = require("connect-flash"),
     app                   = express(),
 	Comment               = require("./models/comment"),   
 	Campground            = require("./models/campground"),
@@ -23,6 +24,7 @@ app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 app.use(require("express-session")({
 	secret:"anukul saini",
@@ -49,6 +51,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
 	res.locals.currentUser=req.user;
+	res.locals.error=req.flash("error");
+	res.locals.success=req.flash("success");
 	next();
 });
 
