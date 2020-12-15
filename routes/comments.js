@@ -21,7 +21,7 @@ router.post("/",isLoggedIn,function(req,res){
 			else{
 			Comment.create(req.body.comment,function(err,comment){
 					if(err){
-						// req.flash("erroe","Something went wrong");
+						req.flash("erroe","Something went wrong");
 						console.log(err)
 					}
 					else{
@@ -32,7 +32,7 @@ router.post("/",isLoggedIn,function(req,res){
 						comment.save();
 						campground.comments.push(comment);
 				        campground.save();
-						// req.flash("success","successfully added comment")
+						req.flash("success","successfully added comment")
 				        res.redirect('/campgrounds/' + campground._id);
 					}
 			});
@@ -74,7 +74,7 @@ function isLoggedIn(req,res,next){
 		
 		return next();
 	}
-	// req.flash("error","please log in first!!")
+	req.flash("error","please log in first!!")
 	res.redirect("/login");
 }
 function checkCommentOwnerShip(req,res,next){
