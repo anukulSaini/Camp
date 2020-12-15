@@ -36,6 +36,7 @@ router.post("/", isLoggedIn, function(req, res){
     // Create a new campground and save to DB
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
+			req.flash('error', err.message);
             console.log(err);
         } else {
             //redirect back to campgrounds page
@@ -78,7 +79,7 @@ router.delete("/:id",checkOwnerShip,function(req,res){
 			if(err){
 				res.redirect("/campgrounds");
 			}else{
-				// req.flash("success","Successfully Deleted");
+			req.flash("success","Successfully Deleted");
 				res.redirect("/campgrounds");
 			}
 	});
@@ -88,7 +89,7 @@ function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){
 		return next();
 	}
-	// req.flash("error","You need to be loged in to do that");
+	req.flash("error","You need to be loged in to do that");
 	res.redirect("/login");
 }
 
@@ -96,7 +97,7 @@ function checkOwnerShip(req,res,next){
 	if(req.isAuthenticated()){
 				 Campground.findById(req.params.id,function(err,foundcampground){
 					if(err){
-						// req.flash("error","campground not found");
+						req.flash("error","campground not found");
 					   res.redirect("back");
 						  }
 					 else{
@@ -105,14 +106,14 @@ function checkOwnerShip(req,res,next){
 							   next();
 								  }
 							 else{
-								 // req.flash("error","You do not have permission to do that");
+								 req.flash("error","You do not have permission to do that");
 								  res.redirect("back");
 								  }
 						  }	
 				 });
 			 }
 			else{
-				// req.flash("error","You need to be loged in to do that");
+				req.flash("error","You need to be loged in to do that");
 				res.redirect("back");
 				}
 }
