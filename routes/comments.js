@@ -1,16 +1,12 @@
-   var express = require("express"),
+  var express = require("express"),
 router      = express.Router({mergeParams:true}),
 Comment        = require("../models/comment"),
 Campground  = require("../models/campground")
 
 router.get("/new",isLoggedIn,function(req,res){
 	Campground.findById(req.params.id,function(err,campground){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render("newCom",{campground:campground});
-		}
+		if(err){}else{
+			res.render("newCom",{campground:campground});}
 	})
 });
 router.post("/",isLoggedIn,function(req,res){
@@ -22,7 +18,6 @@ router.post("/",isLoggedIn,function(req,res){
 			Comment.create(req.body.comment,function(err,comment){
 					if(err){
 						req.flash("erroe","Something went wrong");
-						console.log(err)
 					}
 					else{
 						//add coment and id to username
@@ -68,7 +63,7 @@ router.delete("/:comment_id",checkCommentOwnerShip,function(req,res){
 				res.redirect("/campgrounds/" + req.params.id);
 			}
 	});
-	});
+});
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){
 		

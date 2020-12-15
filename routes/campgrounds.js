@@ -1,27 +1,18 @@
-
-
-   var express = require("express"),
+ var express = require("express"),
 router      = express.Router({mergeParams:true}),
 Comment        = require("../models/comment"),
 Campground  = require("../models/campground")
 
-
-
 router.get("/",function(req,res){
 	Campground.find({},function(err,allcampgrounds){
-		if(err){
-			console.log(err)
-		}
-		else{
-		res.render("campgrounds",{campgrounds1:allcampgrounds});
-          }
+		if(err){}else{
+		res.render("campgrounds",{campgrounds1:allcampgrounds});}
 	});
 });
 
 router.get("/new",isLoggedIn,function(req,res){
     res.render("new");
 });
-
 
 router.post("/", isLoggedIn, function(req, res){
     // get data from form and add to campgrounds array
@@ -37,28 +28,21 @@ router.post("/", isLoggedIn, function(req, res){
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
 			req.flash('error', err.message);
-            console.log(err);
         } else {
             //redirect back to campgrounds page
-            console.log(newlyCreated);
             res.redirect("/campgrounds");
         }
     });
 });
 router.get("/:id",function(req,res){
 	Campground.findById(req.params.id).populate("comments").exec(function(err,newcc){
-		if(err){
-			console.log(err);
-		      }
-		else{
-			console.log(newcc)
-			res.render("show", {camp : newcc });
-		    }
+		if(err){}else{
+			res.render("show", {camp : newcc });}
 	});
 });
 //edit router
 router.get("/:id/edit",checkOwnerShip,function(req,res){    				              Campground.findById(req.params.id,function(err,foundcampground){
- res.render("edit",{campground:foundcampground}); 
+       res.render("edit",{campground:foundcampground}); 
 });
 });
 	
