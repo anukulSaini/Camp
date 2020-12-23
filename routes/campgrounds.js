@@ -81,7 +81,7 @@ function checkOwnerShip(req,res,next){
 	if(req.isAuthenticated()){
 				 Campground.findById(req.params.id,function(err,foundcampground){
 					if(err){
-						req.flash("error","campground not found");
+						req.flash("error","campground not found!!!");
 					   res.redirect("back");
 						  }
 					 else{
@@ -90,7 +90,7 @@ function checkOwnerShip(req,res,next){
 							   next();
 								  }
 							 else{
-								 req.flash("error","You do not have permission to do that");
+								 req.flash("error","You do not have permission to do that!!!");
 								  res.redirect("back");
 								  }
 						  }	
