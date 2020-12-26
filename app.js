@@ -1,19 +1,19 @@
- var express               = require("express"),
-	 methodOverride       =require("method-override"),
-     mongoose              = require("mongoose"),
+ var express                   = require("express"),
+	 methodOverride        =require("method-override"),
+         mongoose              = require("mongoose"),
 	 bodyParser            = require("body-parser"),
 	 flash                 = require("connect-flash"),
-    app                   = express(),
-	Comment               = require("./models/comment"),   
-	Campground            = require("./models/campground"),
-	passport              = require("passport"),
-	localStrategy         = require("passport-local"),
-	passportLocalMongoose = require("passport-local-mongoose"),
-	User                  = require("./models/user")
+         app                   = express(),
+	 Comment               = require("./models/comment"),   
+	 Campground            = require("./models/campground"),
+	 passport              = require("passport"),
+	 localStrategy         = require("passport-local"),
+	 passportLocalMongoose = require("passport-local-mongoose"),
+	 User                  = require("./models/user")
 
 var indexRoutes      =require("./routes/authentication"),   
     commentRoutes    =require("./routes/comments"),
-	campgroundRoutes =require("./routes/campgrounds")
+    campgroundRoutes =require("./routes/campgrounds")
 
 
 
@@ -28,7 +28,6 @@ app.use(flash());
 
 app.use(require("express-session")({
 	secret:"anukul saini",
-	// this secret is to decode 
 	resave:false,
 	saveUninitialized:false
 }));
@@ -40,7 +39,7 @@ app.locals.moment = require('moment');
 
 
 
-// we need these two following lines when we use passport.js
+
 app.use(passport.initialize());
 app.use(passport.session());
 
