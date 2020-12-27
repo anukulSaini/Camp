@@ -35,7 +35,7 @@ app.use(require("express-session")({
 app.locals.moment = require('moment');
 
 
-//PASSPORT CONFIGURATION
+//PASSPORT CONFIGURATIONS
 
 
 
