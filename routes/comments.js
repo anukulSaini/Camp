@@ -69,7 +69,7 @@ function isLoggedIn(req,res,next){
 		
 		return next();
 	}
-	req.flash("error","please log in first!!")
+	req.flash("error","please log in first!!!")
 	res.redirect("/login");
 }
 function checkCommentOwnerShip(req,res,next){
