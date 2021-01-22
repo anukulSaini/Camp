@@ -40,7 +40,7 @@ router.post("/login",passport.authenticate("local",{
 });
 router.get("/logout",function(req,res,user){
 	req.logout();
-	req.flash("success","Successfully loged you out " + user.username);             res.redirect("/campgrounds");
+	req.flash("success","Successfully loged You Out " + user.username);             res.redirect("/campgrounds");
 });
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){
