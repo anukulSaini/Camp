@@ -17,7 +17,7 @@ router.post("/",isLoggedIn,function(req,res){
 			else{
 			Comment.create(req.body.comment,function(err,comment){
 					if(err){
-						req.flash("erroe","Something went wrong");
+						req.flash("erroe","Sorry !!  Something went wrong");
 					}
 					else{
 						//add coment and id to username
